@@ -1,10 +1,6 @@
 package com.proftelran.org.lessonnine;
 
-import homework.homework1.Person;
-
-import java.util.Set;
 import java.util.SortedSet;
-import java.util.Stack;
 import java.util.TreeSet;
 
 public class TestAppSetExampleOne {
