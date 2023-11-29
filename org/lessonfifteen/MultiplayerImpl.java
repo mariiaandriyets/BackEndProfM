@@ -5,5 +5,7 @@ public class MultiplayerImpl implements Multiplayer {
     public void multiply(int value) {
         value *= 2;
         System.out.println("Result value * 2 = " + value);
+
+
     }
 }
