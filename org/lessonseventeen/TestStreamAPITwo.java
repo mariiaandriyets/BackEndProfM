@@ -28,6 +28,7 @@ public class TestStreamAPITwo {
         List<Integer> three = Arrays.asList(7, 8 , 9);
 
         List<List<Integer>> list = Arrays.asList(one, two, three);
+
         list.stream()
                 .flatMap(x -> x.stream())
                 .map(x -> x*2)

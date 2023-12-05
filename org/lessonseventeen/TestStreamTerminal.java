@@ -26,7 +26,7 @@ public class TestStreamTerminal {
         boolean resultMatch = stringList.stream().anyMatch(x -> x.equals("50"));
         System.out.println(resultMatch);
 
-        //allMatch - вернет true усли все элементы подходят под это условие
+        //allMatch - вернет true если все элементы подходят под это условие
         System.out.println("all match result : " + stringList.stream().allMatch(x -> x.equals("10")));
 
         //min, max - взятие минимального и максимального элементов
@@ -35,7 +35,7 @@ public class TestStreamTerminal {
         //toArray - преобразовать в массив
        String[] strings = stringList.stream().toArray(String[]::new);
 
-       //reduce
+       //reduce - собирать все элементы стрима в один обьект
         Optional<String> reduce = stringList.stream().reduce((s1, s2) -> s1 + "-" + s2);
         System.out.println(reduce.get());
 

@@ -2,6 +2,7 @@ package com.proftelran.org.lessonseventeen;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -25,11 +26,11 @@ public class TestStreamAPI {
         // 2. collect(Collectors.toList())
         // 3.forEach(Consumer)  - make action for each element
 
-        List<Integer> integerList = Arrays.asList(3,5,3,1,7,8,6, 4);
+        List<Integer> integerList = Arrays.asList(3, 5, 3, 1, 7, 8, 6, 4);
         // integerList.stream()
         int count = 0;
-        for (Integer value :  integerList) {
-            if( value % 2 != 0) {
+        for (Integer value : integerList) {
+            if (value % 2 != 0) {
                 count++;
             }
         }
@@ -47,6 +48,8 @@ public class TestStreamAPI {
         List<Integer> resLimit = integerList.stream().sorted().limit(3).collect(Collectors.toList());
         System.out.println("Sorted and limit " + resLimit);
 
+        integerList.stream().sorted().forEach(integer -> System.out.println(" " + integer));
+
         integerList.forEach( integer -> {
 
         });
@@ -56,6 +59,7 @@ public class TestStreamAPI {
 //            System.out.println();
 //
 //        });
+
 
         //sorted & skip
         List<Integer> resSkip = integerList.stream().sorted().skip(3).collect(Collectors.toList());
@@ -81,4 +85,5 @@ public class TestStreamAPI {
     }
 
     }
+
 
