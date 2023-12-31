@@ -1,0 +1,24 @@
+package com.proftelran.org.lesson15;
+
+import java.util.function.Function;
+
+public class TestFunction {
+    public static void main(String[] args) {
+        // function - принимает переменную одного типа и возвращает переменную другого типа
+        Function<Integer, Double> half = new Function<Integer, Double>() {
+            @Override
+            public Double apply(Integer integer) {
+                return integer / 2.0;
+            }
+        };
+
+        Function<Integer, Double> halfByLambda = integer -> integer / 2.0;
+
+        Double result = half.apply(5);
+        System.out.println(result);
+
+        System.out.println(halfByLambda.apply(7));
+
+
+    }
+}

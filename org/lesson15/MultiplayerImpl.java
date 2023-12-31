@@ -1,0 +1,11 @@
+package com.proftelran.org.lesson15;
+
+public class MultiplayerImpl implements Multiplayer {
+    @Override
+    public void multiply(int value) {
+        value *= 2;
+        System.out.println("Result value * 2 = " + value);
+
+
+    }
+}
