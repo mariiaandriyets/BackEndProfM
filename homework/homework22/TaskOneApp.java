@@ -51,7 +51,7 @@ public class TaskOneApp {
 
             //task2
            writeDataToFile(path+"/customHash.txt", characterMap);
-           writeDataToFile(path + "/customNumbers.txt", digitMap);
+           writeDigitDataToFile(path + "/customNumbers.txt", digitMap);
 
 
         } catch (IOException e) {
@@ -59,19 +59,6 @@ public class TaskOneApp {
         }
     }
 
-//    public static void countChars(char[] chars) {
-//
-//        int[] charCounts = new int[256];
-//        for (Character element : chars) {
-//            charCounts[element]++;
-//        }
-//        int charCount = 0;
-//        for (int i = 0; i < charCounts.length; i++) {
-//            if (charCounts[i] > 0) {
-//                System.out.println((char) i + ":" + charCounts[i]);
-//            }
-//        }
-//    }
     public static <T> void printMap(Map<T, Integer> map) {
         map.forEach((key, value) -> {
             System.out.println("Character = " + key + " , count = " + value);
@@ -80,7 +67,16 @@ public class TaskOneApp {
     private static void writeDataToFile(String path, Map <Character, Integer> map) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))){
             for(Map.Entry<Character, Integer> entry : map.entrySet()){
-               writer.write(entry.getKey() + entry.getValue());
+               writer.write(entry.getKey() + "" + entry.getValue());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private static void writeDigitDataToFile(String path, Map <Character, Integer> map) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))){
+            for(Map.Entry<Character, Integer> entry : map.entrySet()){
+                writer.write(entry.getKey() + "_" + entry.getValue());
             }
         } catch (IOException e) {
             e.printStackTrace();
