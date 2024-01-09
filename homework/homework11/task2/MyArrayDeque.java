@@ -3,121 +3,107 @@ package com.proftelran.homework.homework11.task2;
 import com.proftelran.org.lesson8.Node;
 
 public class MyArrayDeque implements MyDeque {
-
+    private Integer[] elements;
+    private int head;
+    private int tail;
+    private int count;
     private static final int DEFAULT_CAPACITY = 10;
 
-    private Integer[] elements;
-    private int headIndex;
-    private int tailIndex;
-    private int countOfElements;
+    public MyArrayDeque() {
+        this.elements = new Integer[DEFAULT_CAPACITY];
+        this.head = -1;
+        this.tail = -1;
+        this.count = 0;
+    }
+
+    @Override
+    public void addToHead(Integer element) {
+        grow();
+        if (isEmpty()) {
+            tail = head = 0;
+        }else {
+            head = (head -1 + elements.length) % elements.length;
+        }
+        elements[head] = element;
+        count++;
+    }
 
     @Override
     public void addToTail(Integer element) {
-
-    }
-
-    public MyArrayDeque() {
-        elements = new Integer[DEFAULT_CAPACITY];
-    }
-
-    public int getHeadIndex (int a, int b) {
-        for (a = b-1; a>0; a--) {
+        grow();
+        if (isEmpty()) {
+            tail = head = 0;
+        } else {
+            tail = (tail + 1) % elements.length;
         }
-        return a;
+        elements[tail] = element;
+        count++;
     }
-    @Override
-    public void addToHead(Integer [] element) {
-        if (element == null) {
-           throw new NullPointerException();
-        }
-        Integer[] integer = elements;
-        for (int i = element.length; i<0; i--) {
-            elements[getHeadIndex(headIndex, elements.length)] = element[i];
-        }
-    }
-    public void print () {
-            for (Integer integer : elements) {
-                    System.out.println(integer);
-                }
-        }
 
-//    public void insert(int key, String value) {
-//        Node newNode = new Node(key, value);
-//        if (root == null) { // if tree doesn't exist
-//            root = newNode;
-//            return;
-//        }
-//
-//        Node current = root; // вершина
-//        Node parent = null;
-//
-//        while (true) {
-//            parent = current;
-//            if (key == current.getKey()) {
-//                return;
-//            }
-//            if (key < current.getKey()) { // go left
-//                current = current.getLeft();
-//                if(current == null) {
-//                    parent.setLeft(newNode);
-//                    return;
-//                }
-//            } else { // go right
-//                current = current.getRight();
-//                if (current == null) {
-//                    parent.setRight(newNode);
-//                    return;
-//                }
-//            }
-//        }
-
-//    @Override
-//    public void addToTail(Integer element) {
-//        Integer[] integers = new Integer[DEFAULT_CAPACITY];
-//        if (elements == null) {
-//            elements = integers;
-//            return;
-//        }
-//        if ()
-//        headIndex = 0;
-//        if (elements[headIndex] != null) {
-//            tailIndex = headIndex+1;
-//            elements[tailIndex] = element;
-//            headIndex++;
-//        }
-//    }
-
-    public void pushToTail(int data){
-     data = 0;
-    }
     @Override
     public boolean isEmpty() {
-        return false;
+        return count == 0;
     }
 
     @Override
     public Integer removeHead() {
-        return null;
+        if (isEmpty()) {
+            return 0;
+        }
+        Integer removed = elements[head];
+        if (head == tail) {
+            head = tail = -1;
+        } else {
+            head = (head + 1) % elements.length;
+        }
+        count--;
+        return removed;
     }
 
     @Override
     public Integer removeTail() {
-        return null;
+       if (isEmpty()) {
+           return 0;
+       }
+       Integer removed = elements[tail];
+       if (head == tail) {
+           head = tail = -1;
+       } else {
+           tail = (tail - 1 + elements.length) % elements.length;
+       }
+       count--;
+       return removed;
     }
 
     @Override
     public Integer peekHead() {
-        return null;
+       if (isEmpty()) {
+           return 0;
+       }
+       return elements[head];
     }
 
     @Override
     public Integer peekTail() {
-        return null;
+        if (isEmpty()) {
+            return 0;
+        }
+        return elements[tail];
     }
 
-    private void grow(){
-        //elements * 1.5
+    public void grow () {
+        if (count == elements.length) {
+            int length = elements.length;
+            Integer[] grow = new Integer[(int) (length * 1.5)];
+            int index = 0;
+            for (int i = head; i!= tail; i = (i+1) % elements.length) {
+                 grow[index++] = elements[i];
+            }
+            grow[index] = elements[tail];
+            head = 0;
+            tail = index;
+            elements = grow;
 
-
+        }
     }
 }
