@@ -5,33 +5,30 @@ import java.io.File;
 
 public class DirDelete {
     public static void main(String[] args) {
-        String path = "/Users/mac/IdeaProjects/BackEndProfM/src/main/java/com/proftelran/homework/homework19";
+        String s = "/Users/mac/IdeaProjects/BackEndProfM/src/main/java/com/proftelran/homework/homework19/directory.txt";
         try {
-            File file = new File(path + "/newdir");
-           file.mkdir();
+          deleteDir(new File(s));
+
         }
         catch (Exception e) {
             e.printStackTrace();
         }
 
-        try {
-            File file = new File(path + "/dir");
-            file.mkdir();
-            String pathTwo = "/Users/mac/IdeaProjects/BackEndProfM/src/main/java/com/proftelran/homework/homework19/dir";
-            File fileTwo = new File(pathTwo + "/dirdir");
-            fileTwo.mkdir();
-            boolean b = deleteDir(file);
-            System.out.println(b);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
     }
-    private static boolean deleteDir (File file) {
-        if (file.isDirectory() && file.exists()) {
-           file.delete();
-        }
-        return true;
+    private static void deleteDir (File dir) {
+       if (!dir.exists()) {
+           return;
+       }
+       File [] files = dir.listFiles();
+       if (files != null) {
+           for (File file : files) {
+               if (file.isDirectory()) {
+                   deleteDir(file);
+               } else if (!file.delete()){
+                   System.out.println("No file to delete: " + file.getAbsolutePath());
+               }
+           }
+       }
+
     }
 }
