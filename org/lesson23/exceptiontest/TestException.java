@@ -2,6 +2,7 @@ package com.proftelran.org.lesson23.exceptiontest;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.Scanner;
 
 public class TestException {
     // Throwable
@@ -24,9 +25,18 @@ public class TestException {
             //exception.printStackTrace();
         }
 
-        //Example unchecked exception
+        //Example unchecked exception with scanner
         int x = 0;
         int y = 10;
+
+        Scanner scanner = new Scanner(System.in);
+        int result = -1;
+        while (result != 9) {
+            result = scanner.nextInt();
+            System.out.println(y/result);
+        }
+
+        //Example unchecked exception with x and y variable
         mathOperation(x,y);
 
     }

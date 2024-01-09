@@ -1,4 +1,4 @@
-package com.proftelran.homework.homework11;
+package com.proftelran.homework.homework11.task1;
 
 import java.util.ArrayList;
 import java.util.Collections;
