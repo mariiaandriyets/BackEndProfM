@@ -1,8 +1,8 @@
 package com.proftelran.homework.homework4;
 
 public enum Suit {
-    CLUB,
+    CLUBS,
     DIAMOND,
     HEART,
-    SPADE
+    SPADES;
 }
